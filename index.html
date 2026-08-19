@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You, Whenever You Need Me ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #fbe8ed 50%, #f3d5dd 100%);
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --accent: #ff5e7e;
+      --accent-hover: #e04867;
+      --text-dark: #2c1820;
+      --text-muted: #8c6b74;
+      --shadow: 0 20px 40px rgba(224, 72, 103, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Floating Sparkles */
+    .bg-sparkle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.3; }
+      100% { transform: translateY(-30px) scale(1.2); opacity: 0.8; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    /* Jar Tracker Header */
+    .tracker-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 18px;
+      padding: 12px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 182, 193, 0.5);
+      box-shadow: 0 4px 15px rgba(224, 72, 103, 0.05);
+    }
+
+    .heart-icon {
+      font-size: 1.6rem;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    .tracker-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: left;
+    }
+
+    .tracker-text span {
+      display: block;
+      color: var(--accent);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    /* Category Filter Pills */
+    .category-pills {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(224, 72, 103, 0.2);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Interactive Flip Card */
+    .card-container {
+      perspective: 1000px;
+      margin-bottom: 20px;
+      height: 240px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      color: white;
+      box-shadow: 0 10px 25px rgba(255, 117, 140, 0.35);
+      cursor: pointer;
+    }
+
+    .card-front h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .card-front p {
+      font-size: 0.88rem;
+      opacity: 0.95;
+    }
+
+    .card-back {
+      background: white;
+      color: var(--text-dark);
+      transform: rotateY(180deg);
+      border: 1px solid rgba(255, 182, 193, 0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      justify-content: space-between;
+    }
+
+    .note-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    .note-text {
+      font-size: 1.08rem;
+      line-height: 1.5;
+      font-weight: 500;
+      margin: 12px 0;
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .action-btn {
+      flex: 1;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(255, 94, 126, 0.25);
+    }
+
+    .action-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.secondary {
+      background: #f0e6eb;
+      color: var(--text-dark);
+      box-shadow: none;
+    }
+
+    .action-btn.secondary:hover {
+      background: #e2d3db;
+    }
+
+    /* Mood Chips Bar */
+    .mood-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .mood-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .chip {
+      background: white;
+      border: 1px solid rgba(224, 72, 103, 0.2);
+      color: var(--text-dark);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Bursting Hearts Effect */
+    .heart-burst {
+      position: absolute;
+      pointer-events: none;
+      animation: burstUp 1s ease-out forwards;
+      font-size: 1.3rem;
+      z-index: 100;
+    }
+
+    @keyframes burstUp {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.5); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.4); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Sparkles -->
+  <div class="bg-sparkle" style="width: 100px; height: 100px; top: 10%; left: 15%;"></div>
+  <div class="bg-sparkle" style="width: 150px; height: 150px; bottom: 12%; right: 10%;"></div>
+
+  <div class="container">
+    <header>
+      <h1>Love Note Generator</h1>
+      <p>Draw as many sweet reminders as your heart wants today</p>
+    </header>
+
+    <!-- Jar / Tracker Header -->
+    <div class="tracker-box">
+      <div class="heart-icon">💖</div>
+      <div class="tracker-text">
+        Love Jar Collected: <span id="heartCount">0 Hearts</span>
+      </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="category-pills">
+      <button class="cat-btn active" onclick="setCategory('all', event)">✨ All Notes</button>
+      <button class="cat-btn" onclick="setCategory('sweet', event)">💕 Sweet</button>
+      <button class="cat-btn" onclick="setCategory('reminder', event)">🌟 Reminders</button>
+      <button class="cat-btn" onclick="setCategory('funny', event)">😘 Cute & Playful</button>
+    </div>
+
+    <!-- Interactive Flip Card -->
+    <div class="card-container">
+      <div class="card" id="loveCard">
+        <div class="card-front" onclick="drawNewNote(event)">
+          <h3>✨ Draw a Love Note</h3>
+          <p>Tap to reveal a message & collect a heart</p>
+        </div>
+        <div class="card-back">
+          <div class="note-tag" id="noteTag">SWEET REMINDER</div>
+          <div class="note-text" id="noteText">Loading note...</div>
+          
+          <div class="btn-group">
+            <button class="action-btn secondary" onclick="flipBack()">Close</button>
+            <button class="action-btn" onclick="drawNewNote(event)">Draw Another 💖</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Mood Selector -->
+    <div class="mood-section">
+      <div class="mood-title">NEED A SPECIFIC MOOD?</div>
+      <div class="mood-chips">
+        <button class="chip" onclick="getMoodNote('miss', event)">🥺 Missing You</button>
+        <button class="chip" onclick="getMoodNote('smile', event)">✨ Need a Smile</button>
+        <button class="chip" onclick="getMoodNote('tired', event)">😴 Tired Day</button>
+        <button class="chip" onclick="getMoodNote('hug', event)">🫂 Send a Hug</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- DATABASE OF UNLIMITED NOTES ---
+    const notePool = [
+      { type: 'sweet', text: "Just in case you forgot today: you are my absolute favorite person." },
+      { type: 'sweet', text: "I love how comfortable and happy I feel whenever I talk to you." },
+      { type: 'sweet', text: "Even on my busiest days, thinking of you is my favorite break." },
+      { type: 'sweet', text: "No matter how far apart we are, you are always the first thing on my mind." },
+      { type: 'sweet', text: "You make ordinary moments feel so much sweeter just by being in my life." },
+      { type: 'reminder', text: "Drink some water, take a deep breath, and remember I’m cheering for you!" },
+      { type: 'reminder', text: "I’m so proud of everything you do and who you are every single day." },
+      { type: 'reminder', text: "Don't stress too much today. You're capable of handling anything." },
+      { type: 'funny', text: "You're stuck with me now! No refunds, no exchanges. 😘" },
+      { type: 'funny', text: "Reminder: Your laugh is genuinely my favorite sound in existence." },
+      { type: 'funny', text: "Sending you a giant virtual hug! (Warning: high pressure squeeze included)." },
+      { type: 'sweet', text: "If I had a flower for every time I thought of you, I'd have a garden forever." }
+    ];
+
+    const moodNotes = {
+      miss: [
+        "I miss you like crazy right now! Counting down until we hang out next. ❤️",
+        "Wish I was right there next to you right now."
+      ],
+      smile: [
+        "Here is a random reminder that you look extraordinarily cute today!",
+        "You make my heart do a little happy dance every single time you text."
+      ],
+      tired: [
+        "Rest up today! You work so hard and deserve to relax.",
+        "Put your feet up, drop your shoulders, and know I’m sending you warmth."
+      ],
+      hug: [
+        "Take a slow breath in... and out. I've got you. Always.",
+        "Consider yourself officially wrapped in the biggest, warmest hug."
+      ]
+    };
+
+    let hearts = parseInt(localStorage.getItem('user_hearts_unlimited') || '0');
+    let currentCategory = 'all';
+    let historyIndices = [];
+
+    // Initialize Heart Display
+    document.getElementById('heartCount').innerText = `${hearts} Hearts`;
+
+    // Filter switching
+    function setCategory(cat, event) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Draw an unlimited note
+    function drawNewNote(event) {
+      const card = document.getElementById('loveCard');
+      
+      // Filter notes by selected category
+      let availableNotes = currentCategory === 'all' 
+        ? notePool 
+        : notePool.filter(n => n.type === currentCategory);
+
+      // Pick random index avoiding recent duplicates
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * availableNotes.length);
+      } while (availableNotes.length > 1 && historyIndices.includes(randomIndex));
+
+      historyIndices.push(randomIndex);
+      if (historyIndices.length > 4) historyIndices.shift();
+
+      const selected = availableNotes[randomIndex];
+
+      // Update Card Content
+      document.getElementById('noteTag').innerText = `${selected.type.toUpperCase()} NOTE`;
+      document.getElementById('noteText').innerText = selected.text;
+
+      // Flip card if not already flipped
+      if (!card.classList.contains('flipped')) {
+        card.classList.add('flipped');
+      }
+
+      // Add Heart to Jar
+      hearts++;
+      localStorage.setItem('user_hearts_unlimited', hearts);
+      document.getElementById('heartCount').innerText = `${hearts} Hearts`;
+
+      // Trigger sparkle burst
+      triggerHeartBurst(event);
+    }
+
+    // Flip card back to front
+    function flipBack() {
+      document.getElementById('loveCard').classList.remove('flipped');
+    }
+
+    // Fetch mood-based note instantly
+    function getMoodNote(moodKey, event) {
+      const card = document.getElementById('loveCard');
+      const options = moodNotes[moodKey];
+      const randomNote = options[Math.floor(Math.random() * options.length)];
+
+      document.getElementById('noteTag').innerText = `${moodKey.toUpperCase()} REMINDER`;
+      document.getElementById('noteText').innerText = randomNote;
+
+      if (!card.classList.contains('flipped')) {
+        card.classList.add('flipped');
+      }
+
+      // Add Heart
+      hearts++;
+      localStorage.setItem('user_hearts_unlimited', hearts);
+      document.getElementById('heartCount').innerText = `${hearts} Hearts`;
+
+      triggerHeartBurst(event);
+    }
+
+    // Visual burst effect on click
+    function triggerHeartBurst(e) {
+      const container = document.body;
+      const count = 7;
+      const x = e.clientX || window.innerWidth / 2;
+      const y = e.clientY || window.innerHeight / 2;
+
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-burst';
+        heart.innerText = ['💖', '✨', '🌸', '🥰', '💕'][Math.floor(Math.random() * 5)];
+        
+        const dx = (Math.random() - 0.5) * 180 + 'px';
+        const dy = (Math.random() - 0.8) * 180 + 'px';
+        
+        heart.style.setProperty('--dx', dx);
+        heart.style.setProperty('--dy', dy);
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+      }
+    }
+  </script>
+</body>
+</html>
