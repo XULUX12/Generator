@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You, Whenever You Need Me ❤️</title>
+  <title>For My Hasnaa ❤️</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -144,7 +144,7 @@
     .card-container {
       perspective: 1000px;
       margin-bottom: 20px;
-      height: 240px;
+      height: 250px;
     }
 
     .card {
@@ -152,7 +152,7 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .card.flipped {
@@ -207,10 +207,11 @@
     }
 
     .note-text {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       line-height: 1.5;
       font-weight: 500;
       margin: 12px 0;
+      transition: opacity 0.2s ease;
     }
 
     /* Action Buttons */
@@ -285,11 +286,11 @@
 
     /* Bursting Hearts Effect */
     .heart-burst {
-      position: absolute;
+      position: fixed;
       pointer-events: none;
       animation: burstUp 1s ease-out forwards;
       font-size: 1.3rem;
-      z-index: 100;
+      z-index: 1000;
     }
 
     @keyframes burstUp {
@@ -306,15 +307,15 @@
 
   <div class="container">
     <header>
-      <h1>Love Note Generator</h1>
-      <p>Draw as many sweet reminders as your heart wants today</p>
+      <h1>Notes for My Hasnaa</h1>
+      <p>Draw as many sweet reminders as your heart wants today, my love</p>
     </header>
 
     <!-- Jar / Tracker Header -->
     <div class="tracker-box">
       <div class="heart-icon">💖</div>
       <div class="tracker-text">
-        Love Jar Collected: <span id="heartCount">0 Hearts</span>
+        Hasnaa's Love Jar: <span id="heartCount">0 Hearts</span>
       </div>
     </div>
 
@@ -347,7 +348,7 @@
 
     <!-- Quick Mood Selector -->
     <div class="mood-section">
-      <div class="mood-title">NEED A SPECIFIC MOOD?</div>
+      <div class="mood-title">HOW ARE YOU FEELING RIGHT NOW, MY HASNAA?</div>
       <div class="mood-chips">
         <button class="chip" onclick="getMoodNote('miss', event)">🥺 Missing You</button>
         <button class="chip" onclick="getMoodNote('smile', event)">✨ Need a Smile</button>
@@ -358,44 +359,48 @@
   </div>
 
   <script>
-    // --- DATABASE OF UNLIMITED NOTES ---
+    // --- PERSONALIZED DATABASE WITH HASNAA'S NICKNAMES ---
     const notePool = [
-      { type: 'sweet', text: "Just in case you forgot today: you are my absolute favorite person." },
-      { type: 'sweet', text: "I love how comfortable and happy I feel whenever I talk to you." },
-      { type: 'sweet', text: "Even on my busiest days, thinking of you is my favorite break." },
-      { type: 'sweet', text: "No matter how far apart we are, you are always the first thing on my mind." },
-      { type: 'sweet', text: "You make ordinary moments feel so much sweeter just by being in my life." },
-      { type: 'reminder', text: "Drink some water, take a deep breath, and remember I’m cheering for you!" },
-      { type: 'reminder', text: "I’m so proud of everything you do and who you are every single day." },
-      { type: 'reminder', text: "Don't stress too much today. You're capable of handling anything." },
-      { type: 'funny', text: "You're stuck with me now! No refunds, no exchanges. 😘" },
-      { type: 'funny', text: "Reminder: Your laugh is genuinely my favorite sound in existence." },
-      { type: 'funny', text: "Sending you a giant virtual hug! (Warning: high pressure squeeze included)." },
-      { type: 'sweet', text: "If I had a flower for every time I thought of you, I'd have a garden forever." }
+      { type: 'sweet', text: "Just in case you forgot today: you are my absolute favorite person in the world, my Hasnaa." },
+      { type: 'sweet', text: "I love how comfortable and happy I feel whenever I talk to you, my beautiful lady." },
+      { type: 'sweet', text: "Even on my busiest days, thinking of you is my favorite break, my baby girl." },
+      { type: 'sweet', text: "No matter how many miles are between us, you are always the first thing on my mind, my Hasnaa." },
+      { type: 'sweet', text: "You make ordinary moments feel so much sweeter just by existing, my princess." },
+      { type: 'sweet', text: "If I had a flower for every time I thought of you, I'd have an endless garden, my beautiful lady." },
+      { type: 'reminder', text: "Drink some water, take a deep breath, and remember I’m cheering for you, my baby girl!" },
+      { type: 'reminder', text: "I’m so proud of everything you do and who you are every single day, my Hasnaa." },
+      { type: 'reminder', text: "Don't stress too much today. You're capable of handling anything, my sweet girl." },
+      { type: 'reminder', text: "Take it easy today, my beautiful lady. You deserve all the calm in the world." },
+      { type: 'funny', text: "You're stuck with me forever now, my Hasnaa! No refunds, no exchanges. 😘" },
+      { type: 'funny', text: "Reminder: Your laugh is genuinely my favorite sound in existence, my baby girl." },
+      { type: 'funny', text: "Sending you a giant virtual hug! (Warning: high pressure squeeze included, my Hasnaa)." },
+      { type: 'funny', text: "How did I get so lucky to have you as my girl? You're absolute perfection." }
     ];
 
     const moodNotes = {
       miss: [
-        "I miss you like crazy right now! Counting down until we hang out next. ❤️",
-        "Wish I was right there next to you right now."
+        "I miss you like crazy right now, my Hasnaa! Counting down until we hang out next. ❤️",
+        "Wish I was right there next to you right now, my baby girl.",
+        "Distance means nothing when someone means as much as you do, my beautiful lady."
       ],
       smile: [
-        "Here is a random reminder that you look extraordinarily cute today!",
-        "You make my heart do a little happy dance every single time you text."
+        "Here is a random reminder that you look extraordinarily cute today, my Hasnaa!",
+        "You make my heart do a little happy dance every single time you text, my baby girl."
       ],
       tired: [
-        "Rest up today! You work so hard and deserve to relax.",
-        "Put your feet up, drop your shoulders, and know I’m sending you warmth."
+        "Rest up today, my baby girl! You work so hard and deserve all the rest.",
+        "Put your feet up, drop your shoulders, and know I’m sending you warmth, my Hasnaa."
       ],
       hug: [
-        "Take a slow breath in... and out. I've got you. Always.",
-        "Consider yourself officially wrapped in the biggest, warmest hug."
+        "Take a slow breath in... and out. I've got you. Always, my beautiful lady.",
+        "Consider yourself officially wrapped in the biggest, warmest hug, my Hasnaa."
       ]
     };
 
-    let hearts = parseInt(localStorage.getItem('user_hearts_unlimited') || '0');
+    let hearts = parseInt(localStorage.getItem('hasnaa_hearts_unlimited') || '0');
     let currentCategory = 'all';
-    let historyIndices = [];
+    let lastIndex = -1;
+    let isAnimating = false;
 
     // Initialize Heart Display
     document.getElementById('heartCount').innerText = `${hearts} Hearts`;
@@ -407,38 +412,49 @@
       event.target.classList.add('active');
     }
 
-    // Draw an unlimited note
+    // Draw an unlimited note (Fixed double-click crash issue)
     function drawNewNote(event) {
-      const card = document.getElementById('loveCard');
+      if (isAnimating) return;
       
+      const card = document.getElementById('loveCard');
+      const isFlipped = card.classList.contains('flipped');
+
       // Filter notes by selected category
       let availableNotes = currentCategory === 'all' 
         ? notePool 
         : notePool.filter(n => n.type === currentCategory);
 
-      // Pick random index avoiding recent duplicates
+      // Pick random index avoiding direct repetition
       let randomIndex;
       do {
         randomIndex = Math.floor(Math.random() * availableNotes.length);
-      } while (availableNotes.length > 1 && historyIndices.includes(randomIndex));
+      } while (availableNotes.length > 1 && randomIndex === lastIndex);
 
-      historyIndices.push(randomIndex);
-      if (historyIndices.length > 4) historyIndices.shift();
-
+      lastIndex = randomIndex;
       const selected = availableNotes[randomIndex];
 
-      // Update Card Content
-      document.getElementById('noteTag').innerText = `${selected.type.toUpperCase()} NOTE`;
-      document.getElementById('noteText').innerText = selected.text;
+      // Update text with quick fade effect
+      const noteTextElem = document.getElementById('noteText');
+      const noteTagElem = document.getElementById('noteTag');
 
-      // Flip card if not already flipped
-      if (!card.classList.contains('flipped')) {
+      if (isFlipped) {
+        isAnimating = true;
+        noteTextElem.style.opacity = '0';
+        setTimeout(() => {
+          noteTagElem.innerText = `${selected.type.toUpperCase()} NOTE`;
+          noteTextElem.innerText = selected.text;
+          noteTextElem.style.opacity = '1';
+          isAnimating = false;
+        }, 200);
+      } else {
+        noteTagElem.innerText = `${selected.type.toUpperCase()} NOTE`;
+        noteTextElem.innerText = selected.text;
         card.classList.add('flipped');
       }
 
       // Add Heart to Jar
       hearts++;
-      localStorage.setItem('user_hearts_unlimited', hearts);
+      localStorage.setItem('hasnaa_hearts_unlimited', hearts);
       document.getElementById('heartCount').innerText = `${hearts} Hearts`;
 
       // Trigger sparkle burst
@@ -452,46 +468,59 @@
 
     // Fetch mood-based note instantly
     function getMoodNote(moodKey, event) {
+      if (isAnimating) return;
+
       const card = document.getElementById('loveCard');
       const options = moodNotes[moodKey];
       const randomNote = options[Math.floor(Math.random() * options.length)];
 
-      document.getElementById('noteTag').innerText = `${moodKey.toUpperCase()} REMINDER`;
-      document.getElementById('noteText').innerText = randomNote;
+      const noteTextElem = document.getElementById('noteText');
+      const noteTagElem = document.getElementById('noteTag');
+      const isFlipped = card.classList.contains('flipped');
 
-      if (!card.classList.contains('flipped')) {
+      if (isFlipped) {
+        isAnimating = true;
+        noteTextElem.style.opacity = '0';
+        setTimeout(() => {
+          noteTagElem.innerText = `${moodKey.toUpperCase()} REMINDER`;
+          noteTextElem.innerText = randomNote;
+          noteTextElem.style.opacity = '1';
+          isAnimating = false;
+        }, 200);
+      } else {
+        noteTagElem.innerText = `${moodKey.toUpperCase()} REMINDER`;
+        noteTextElem.innerText = randomNote;
         card.classList.add('flipped');
       }
 
       // Add Heart
       hearts++;
-      localStorage.setItem('user_hearts_unlimited', hearts);
+      localStorage.setItem('hasnaa_hearts_unlimited', hearts);
       document.getElementById('heartCount').innerText = `${hearts} Hearts`;
 
       triggerHeartBurst(event);
     }
 
-    // Visual burst effect on click
+    // Fixed Burst Effect (Uses Viewport Coordinates safely)
     function triggerHeartBurst(e) {
-      const container = document.body;
-      const count = 7;
-      const x = e.clientX || window.innerWidth / 2;
-      const y = e.clientY || window.innerHeight / 2;
+      const count = 6;
+      const x = e && e.clientX ? e.clientX : window.innerWidth / 2;
+      const y = e && e.clientY ? e.clientY : window.innerHeight / 2;
 
       for (let i = 0; i < count; i++) {
         const heart = document.createElement('div');
         heart.className = 'heart-burst';
         heart.innerText = ['💖', '✨', '🌸', '🥰', '💕'][Math.floor(Math.random() * 5)];
         
-        const dx = (Math.random() - 0.5) * 180 + 'px';
-        const dy = (Math.random() - 0.8) * 180 + 'px';
+        const dx = (Math.random() - 0.5) * 160 + 'px';
+        const dy = (Math.random() - 0.8) * 160 + 'px';
         
         heart.style.setProperty('--dx', dx);
         heart.style.setProperty('--dy', dy);
         heart.style.left = x + 'px';
         heart.style.top = y + 'px';
 
-        container.appendChild(heart);
+        document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 1000);
       }
     }
